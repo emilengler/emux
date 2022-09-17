@@ -1,0 +1,45 @@
+.Dd $Mdocdate: September 17 2022 $
+.Dt CAT 1
+.Os
+.Sh NAME
+.Nm cat
+.Nd concatenate and print files
+.Sh SYNOPSIS
+.Nm cat
+.Op Fl u
+.Op Ar
+.Sh DESCRIPTION
+The
+.Nm
+utility reads files in sequence and writes their contents to the standard output
+in the same sequence.
+If
+.Ar file
+is a single dash
+.Sq -
+or absent,
+.Nm
+reads from the standard input.
+.Pp
+The options are as follows:
+.Bl -tag -width Ds
+.It Fl u
+Write bytes from the input file to the standard output as each is read, thereby
+disabling buffering mechanisms.
+.El
+.Sh EXIT STATUS
+.Ex -std cat
+.Sh SEE ALSO
+.Xr head 1 ,
+.Xr tail 1
+.Sh STANDARDS
+The
+.Nm
+utility is compliant with the
+.St -p1003.1-2008
+specification
+.Sh AUTHORS
+The
+.Nm
+utility was written by
+.An Emil Engler Aq Mt me@emilengler.com .

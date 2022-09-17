@@ -1,4 +1,5 @@
-UTILS=	false	\
+UTILS=	cat	\
+	false	\
 	true
 
 all:
