@@ -11,7 +11,9 @@
 #define BUF_SIZE	256
 
 static void	cat(FILE *);
-static void	usage(const char *);
+static void	usage(void);
+
+static const char	*progname;
 
 static void
 cat(FILE *fp)
@@ -24,7 +26,7 @@ cat(FILE *fp)
 }
 
 static void
-usage(const char *progname)
+usage(void)
 {
 	fprintf(stderr, "usage: %s [-u] [file ...]\n", progname);
 	exit(1);
@@ -35,13 +37,15 @@ main(int argc, char *argv[])
 {
 	int	ch, i;
 
+	progname = argv[0];
+
 	while ((ch = getopt(argc, argv, "u")) != -1) {
 		switch (ch) {
 		case 'u':
 			setvbuf(stdout, NULL, _IONBF, 0);
 			break;
 		default:
-			usage(argv[0]);
+			usage();
 			break;
 		}
 	}
