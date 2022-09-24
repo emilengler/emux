@@ -1,0 +1,53 @@
+.Dd $Mdocdate: September 24 2022 $
+.Dt HEAD 1
+.Os
+.Sh NAME
+.Nm head
+.Nd copy the first part of files
+.Sh SYNOPSIS
+.Nm head
+.Op Fl n Ar number
+.Op Ar
+.Sh DESCRIPTION
+The
+.Nm
+utility
+reads files in sequence and writes the first
+.Ar number
+of lines of each input file to the standard output.
+If
+.Ar file
+is a single dash
+.Sq -
+or absent,
+.Nm
+reads from the standard input.
+If
+.Ar number
+is absent, it defaults to 10.
+.Pp
+The options are as follows:
+.Bl -tag -width Ds
+.It Fl n
+The first
+.Ar number
+of lines of each input file are written to stdout.
+.Ar number
+must be a positive decimal integer.
+.El
+.Sh EXIT STATUS
+.Ex -std head
+.Sh SEE ALSO
+.Xr cat 1 ,
+.Xr tail 1
+.Sh STANDARDS
+The
+.Nm
+utility is compliant with the
+.St -p1003.1-2008
+specification
+.Sh AUTHORS
+The
+.Nm
+utility was written by
+.An Emil Engler Aq Mt me@emilengler.com .

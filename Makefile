@@ -1,5 +1,6 @@
 UTILS=	cat	\
 	false	\
+	head	\
 	true
 
 all:
