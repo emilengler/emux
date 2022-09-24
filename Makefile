@@ -13,7 +13,7 @@ clean:
 		${MAKE} -C test/$${util} clean;	\
 	done
 
-test:
+test: all
 	@for util in ${UTILS}; do		\
 		${MAKE} -C test/$${util} test;	\
 	done
