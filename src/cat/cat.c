@@ -11,6 +11,7 @@
 #define BUF_SIZE	256
 
 static void	cat(FILE *);
+static void	cat_file(const char *);
 static void	usage(void);
 
 static const char	*progname;
@@ -23,6 +24,25 @@ cat(FILE *fp)
 
 	while ((ch = fgetc(fp)) != EOF)
 		putchar(ch);
+}
+
+static void
+cat_file(const char *path)
+{
+	if (strcmp(path, "-") == 0) {
+		/* The given file is the standard input. */
+		cat(stdin);
+	} else {
+		FILE	*fp;
+
+		if ((fp = fopen(path, "rb")) == NULL) {
+			fprintf(stderr, "%s: %s: %s\n", progname, path,
+				strerror(errno));
+			exit(1);
+		}
+		cat(fp);
+		fclose(fp);
+	}
 }
 
 static void
@@ -57,22 +77,8 @@ main(int argc, char *argv[])
 	}
 
 	/* Operate on each and every file. */
-	for (i = optind; i < argc; ++i) {
-		if (strcmp(argv[i], "-") == 0) {
-			/* Read on stdin. */
-			cat(stdin);
-		} else {
-			FILE	*fp;
-
-			if ((fp = fopen(argv[i], "rb")) == NULL) {
-				fprintf(stderr, "%s: %s: %s\n", argv[0],
-					argv[i], strerror(errno));
-				exit(1);
-			}
-			cat(fp);
-			fclose(fp);
-		}
-	}
+	for (i = optind; i < argc; ++i)
+		cat_file(argv[i]);
 
 	return (0);
 }
